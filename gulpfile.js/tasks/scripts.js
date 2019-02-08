@@ -40,6 +40,9 @@ gulp.task('scripts:min', function(){
         .pipe(gulp.dest(dstDir));
 });
 
+/*
+* For gulp.plugins.filenames.get("scripts"... to work, filenames must have been used in previous steps (in fct 'copyScripts')
+*/
 function injectScripts () {
     var layoutsDir = path.join(gulp.config.projectDir, gulp.config.roots.build, gulp.config.srcRoots.layouts);
     var ignorePath = path.join(gulp.config.projectsDir, gulp.config.projectDirName, gulp.config.roots.build);

@@ -55,6 +55,7 @@ gulp.task('styles:inject', function() {
         .pipe(gulp.dest(dstDir, {cwd: ignorePath}));
         //.pipe(gulp.plugins.debug());
 
+    // does nothing if there are no .jade files 
     return gulp.src(layoutsDir + '/**/*.jade')
         .pipe(gulp.plugins.inject(sources, {quiet: true}))
         //.pipe(gulp.plugins.debug())
