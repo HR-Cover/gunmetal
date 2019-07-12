@@ -23,7 +23,7 @@ if (gulp.config.isLoaded) {
 
     gulp.task('rebuild:full', gulp.series('build', 'content', 'layouts:copy', 'styles' , 'images', 'scripts' , 'layouts'));
     gulp.task('rebuild:min', gulp.series('build', 'content', 'layouts:copy', 'styles' , 'images:min', 'scripts' , 'layouts'));
-    gulp.task('rebuild', gulp.series('content', 'layouts:copy', 'styles' , 'images', 'scripts' , 'layouts'));
+    gulp.task('rebuild', gulp.series('build:static', 'content', 'layouts:copy', 'styles' , 'images', 'scripts' , 'layouts'));
 
     /**
      * Main Gulp task, basically does the whole building of the app

@@ -8,6 +8,13 @@ gulp.task('build:clean', function(cb) {
     fs.emptyDir(dir, cb);
 });
 
+gulp.task('build:static', function(cb) {
+    var srcDir = path.join(gulp.config.projectDir, gulp.config.roots.src, gulp.config.srcRoots.static);
+    var dstDir = path.join(gulp.config.projectDir, gulp.config.roots.build);
+
+    fs.copy(srcDir, dstDir, cb);
+});
+
 gulp.task('build:sitemap', function(cb) {
     var buildSrc = path.join(gulp.config.projectDir, gulp.config.roots.build, '**/*.html');
     var distDir = path.join(gulp.config.projectDir, gulp.config.roots.dist);
@@ -34,4 +41,4 @@ gulp.task('build:sitemap', function(cb) {
 });
 
 
-gulp.task('build', gulp.series('build:clean'));
+gulp.task('build', gulp.series('build:clean', 'build:static'));

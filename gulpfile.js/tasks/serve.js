@@ -78,6 +78,7 @@ gulp.task('serve:watch', function () {
     gulp.watch([srcDir + gulp.config.srcRoots.scss + '/**/*.scss'], gulp.series('styles', 'layouts:shopify', 'serve:reload'));
     gulp.watch([srcDir + gulp.config.srcRoots.layouts + '/**/*.jade', srcDir + gulp.config.srcRoots.layouts + '/**/*.pug'], gulp.series('rebuild', 'serve:reload'));
     gulp.watch([srcDir + gulp.config.srcRoots.content + '/**/*.md'], gulp.series('rebuild', 'serve:reload'));
+    gulp.watch([srcDir + gulp.config.srcRoots.static + '/**/*'], gulp.series('build:static', 'serve:reload'));
 });
 
 gulp.task('serve', gulp.parallel('serve:watch', 'serve:' + gulp.config.serve.mode));
