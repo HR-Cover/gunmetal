@@ -111,6 +111,8 @@
     "gulp-pug": "3.0.4",
     "gulp-rename": "1.2.2",
 
+    "gulp-sass-glob-import": "0.1.0",
+
     "gulp-sitemap": "4.1.1",
     "gulp-size": "2.1.0",
     "gulp-sourcemaps": "1.6.0",
