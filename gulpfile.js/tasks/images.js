@@ -26,18 +26,8 @@ gulp.task('images:retina', function() {
     var buildDir = path.join(gulp.config.projectDir, gulp.config.roots.build, gulp.config.srcRoots.imgs);
     var source = buildDir + '/**/*_2x.{jpg,png}';
 
-    if (gulp.config.images.unretina.lwip) {
-
-        return gulp.src(source)
-            .pipe(gulp.plugins.lwip.scale(.5))
-            .pipe(gulp.plugins.rename(function (path) {
-                path.basename = path.basename.replace(/_2x/, '');
-            }))
-            .pipe(gulp.dest(buildDir));
-    }
-
     return gulp.src(source)
-        .pipe(gulp.plugins.unretina())
+        // .pipe(gulp.plugins.unretina()) // removing because the dependency plugin for this is not working
         .pipe(gulp.dest(buildDir));
 
 });
