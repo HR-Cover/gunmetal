@@ -1,0 +1,133 @@
+{
+  "_args": [
+    [
+      {
+        "raw": "https://github.com/HR-Cover/gunmetal.git",
+        "scope": null,
+        "escapedName": null,
+        "name": null,
+        "rawSpec": "https://github.com/HR-Cover/gunmetal.git",
+        "spec": "git+https://github.com/HR-Cover/gunmetal.git",
+        "type": "hosted",
+        "hosted": {
+          "type": "github",
+          "ssh": "git@github.com:HR-Cover/gunmetal.git",
+          "sshUrl": "git+ssh://git@github.com/HR-Cover/gunmetal.git",
+          "httpsUrl": "git+https://github.com/HR-Cover/gunmetal.git",
+          "gitUrl": "git://github.com/HR-Cover/gunmetal.git",
+          "shortcut": "github:HR-Cover/gunmetal",
+          "directUrl": "https://raw.githubusercontent.com/HR-Cover/gunmetal/master/package.json"
+        }
+      },
+      "/home/ashif"
+    ]
+  ],
+  "_from": "git+https://github.com/HR-Cover/gunmetal.git",
+  "_id": "gunmetal@1.2.4",
+  "_inCache": true,
+  "_location": "/gunmetal",
+  "_phantomChildren": {},
+  "_requested": {
+    "raw": "https://github.com/HR-Cover/gunmetal.git",
+    "scope": null,
+    "escapedName": null,
+    "name": null,
+    "rawSpec": "https://github.com/HR-Cover/gunmetal.git",
+    "spec": "git+https://github.com/HR-Cover/gunmetal.git",
+    "type": "hosted",
+    "hosted": {
+      "type": "github",
+      "ssh": "git@github.com:HR-Cover/gunmetal.git",
+      "sshUrl": "git+ssh://git@github.com/HR-Cover/gunmetal.git",
+      "httpsUrl": "git+https://github.com/HR-Cover/gunmetal.git",
+      "gitUrl": "git://github.com/HR-Cover/gunmetal.git",
+      "shortcut": "github:HR-Cover/gunmetal",
+      "directUrl": "https://raw.githubusercontent.com/HR-Cover/gunmetal/master/package.json"
+    }
+  },
+  "_requiredBy": [
+    "#USER"
+  ],
+  "_resolved": "git+https://github.com/HR-Cover/gunmetal.git#c02c53917cd726fd028c4530845ef767b28a9bbc",
+  "_shasum": "5f0143ba6c6492412343e86cca35132469efe7f5",
+  "_shrinkwrap": null,
+  "_spec": "https://github.com/HR-Cover/gunmetal.git",
+  "_where": "/home/ashif",
+  "author": {
+    "name": "Goran Aleksic",
+    "email": "goranaleksic@me.com"
+  },
+  "bin": {
+    "gunmetal": "./bin/gmtasks.js"
+  },
+  "bugs": {
+    "url": "https://github.com/hivearts/gunmetal/issues"
+  },
+  "contributors": [
+    {
+      "name": "Goran Aleksic",
+      "email": "goranaleksic@me.com"
+    },
+    {
+      "name": "Dr. Sinisa",
+      "email": "drsinisa@hotmail.com"
+    }
+  ],
+  "dependencies": {
+    "yamljs": "0.2.8"
+  },
+  "description": "Gulp & Metalsmith buildtool",
+  "directories": {},
+  "engines": {
+    "node": "6.1.0",
+    "npm": "3.8.3"
+  },
+  "gitHead": "c02c53917cd726fd028c4530845ef767b28a9bbc",
+  "homepage": "https://github.com/hivearts/gunmetal",
+  "license": "Apache-2.0",
+  "main": "index.js",
+  "maintainers": [
+    {
+      "name": "hivearts",
+      "email": "goganogga@gmail.com"
+    },
+    {
+      "name": "Dr. Sinisa",
+      "email": "drsinisa@hotmail.com"
+    }
+  ],
+  "name": "gunmetal",
+  "readme": "README.md",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/hivearts/gunmetal.git"
+  },
+  "scripts": {},
+  "version": "1.2.4",
+  "warnings": [
+    {
+      "code": "ENOTSUP",
+      "pkgid": "gunmetal@0.0.6",
+      "required": {
+        "node": "6.1.0",
+        "npm": "3.8.3"
+      }
+    },
+    {
+      "code": "ENOTSUP",
+      "required": {
+        "node": "6.1.0",
+        "npm": "3.8.3"
+      },
+      "pkgid": "gunmetal@1.2.4"
+    },
+    {
+      "code": "ENOTSUP",
+      "required": {
+        "node": "6.1.0",
+        "npm": "3.8.3"
+      },
+      "pkgid": "gunmetal@1.2.4"
+    }
+  ]
+}
