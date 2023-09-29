@@ -20,28 +20,6 @@ gulp.task('images:compress', function() {
         .pipe(gulp.dest(buildDir));
 });
 
-// Convert and resize retina @2 images to half size in build dir
-gulp.task('images:retina', function() {
-
-    var buildDir = path.join(gulp.config.projectDir, gulp.config.roots.build, gulp.config.srcRoots.imgs);
-    var source = buildDir + '/**/*_2x.{jpg,png}';
-
-    if (gulp.config.images.unretina.lwip) {
-
-        return gulp.src(source)
-            .pipe(gulp.plugins.lwip.scale(.5))
-            .pipe(gulp.plugins.rename(function (path) {
-                path.basename = path.basename.replace(/_2x/, '');
-            }))
-            .pipe(gulp.dest(buildDir));
-    }
-
-    return gulp.src(source)
-        .pipe(gulp.plugins.unretina())
-        .pipe(gulp.dest(buildDir));
-
-});
-
 // finds all small images in css in build dir, then replaces them into base64 and overwrites css
 gulp.task('images:base64', function() {
     var cssDir = path.join(gulp.config.projectDir, gulp.config.roots.build, gulp.config.srcRoots.styles);
@@ -54,5 +32,5 @@ gulp.task('images:base64', function() {
 });
 
 
-gulp.task('images', gulp.series('images:copy', 'images:retina'));
-gulp.task('images:min', gulp.series('images:copy', 'images:retina', 'images:compress', 'images:base64'));
+gulp.task('images', gulp.series('images:copy'));
+gulp.task('images:min', gulp.series('images:copy', 'images:compress', 'images:base64'));
