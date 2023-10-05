@@ -23,7 +23,7 @@
     ]
   ],
   "_from": "git+https://github.com/HR-Cover/gunmetal.git",
-  "_id": "gunmetal@1.2.4",
+  "_id": "gunmetal@1.3.0",
   "_inCache": true,
   "_location": "/gunmetal",
   "_phantomChildren": {},
@@ -132,10 +132,6 @@
   },
   "description": "Gulp & Metalsmith buildtool",
   "directories": {},
-  "engines": {
-    "node": "6.1.0",
-    "npm": "3.8.3"
-  },
   "gitHead": "c02c53917cd726fd028c4530845ef767b28a9bbc",
   "homepage": "https://github.com/hivearts/gunmetal",
   "license": "Apache-2.0",
@@ -157,31 +153,5 @@
     "url": "git+https://github.com/hivearts/gunmetal.git"
   },
   "scripts": {},
-  "version": "1.2.4",
-  "warnings": [
-    {
-      "code": "ENOTSUP",
-      "pkgid": "gunmetal@0.0.6",
-      "required": {
-        "node": "6.1.0",
-        "npm": "3.8.3"
-      }
-    },
-    {
-      "code": "ENOTSUP",
-      "required": {
-        "node": "6.1.0",
-        "npm": "3.8.3"
-      },
-      "pkgid": "gunmetal@1.2.4"
-    },
-    {
-      "code": "ENOTSUP",
-      "required": {
-        "node": "6.1.0",
-        "npm": "3.8.3"
-      },
-      "pkgid": "gunmetal@1.2.4"
-    }
-  ]
+  "version": "1.3.0"
 }
