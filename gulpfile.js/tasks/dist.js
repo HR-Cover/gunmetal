@@ -37,24 +37,17 @@ gulp.task('dist:copy', function(cb) {
     });
 });
 
-gulp.task('dist:delete', async function (cb) {
-    const del = (await import('del')).default;
-    var distDir = path.join(gulp.config.projectDir, gulp.config.roots.dist);
+gulp.task('dist:delete', function (done) {
+    const distDir = path.join(gulp.config.projectDir, gulp.config.roots.dist);
 
-    if (!distDir) {
-        cb();
+    if (!distDir || !(gulp.config.dist.deleteFiles && gulp.config.dist.deleteFiles.length)) {
+        done();
         return;
     }
 
-    if (gulp.config.dist.deleteFiles && gulp.config.dist.deleteFiles.length) {
-        var list = gulp.config.dist.deleteFiles.map(function(file) {
-            return path.join(distDir, file);
-        });
-
-        return del(list, {force: true});
-    } else {
-        cb();
-    }
+    Promise.all(gulp.config.dist.deleteFiles.map(file => 
+        fs.remove(path.join(distDir, file))
+    )).then(() => done()).catch(done);
 });
 
 gulp.task('dist:configs', function(cb) {

@@ -19,12 +19,12 @@ gulp.task('projects:new', function(cb) {
     });
 });
 
-gulp.task('projects:delete', async function(cb) {
-    const del = (await import('del')).default;
-    var projDir = path.join(gulp.config.projectsDirFull, gulp.requireArgv('project-name', cb));
-    del(projDir).then(function() {
-        cb();
-    });
+gulp.task('projects:delete', function(cb) {
+    const projDir = path.join(gulp.config.projectsDirFull, gulp.requireArgv('project-name'));
+
+    fs.remove(projDir)
+      .then(() => cb())
+      .catch(cb);
 });
 
 gulp.task('projects:copy', function(cb) {
