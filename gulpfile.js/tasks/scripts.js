@@ -1,5 +1,7 @@
 
 var path = require('path');
+var ngAnnotate = require('gulp-ng-annotate-patched');
+var plumber = require('gulp-plumber');
 
 var sources = [].concat(gulp.config.scripts.vendors, gulp.config.scripts.plugins, gulp.config.scripts.components, gulp.config.scripts.project);
 
@@ -31,12 +33,13 @@ gulp.task('scripts:copy-components', function() {
 
 
 // Copy from source and minify-concat scripts
-gulp.task('scripts:min', function(){
+gulp.task('scripts:min', function() {
     var dstDir = path.join(gulp.config.projectDir, gulp.config.roots.build, gulp.config.srcRoots.scripts);
-    
-     return gulp.src(sources, {root: gulp.config.projectDir})
-         //.pipe(gulp.plugins.debug())
-        .pipe(gulp.plugins.ngAnnotate())
+
+    return gulp.src(sources, {root: gulp.config.projectDir})
+        //.pipe(gulp.plugins.debug())
+        // .pipe(plumber())
+        .pipe(ngAnnotate()) // Use the directly required ngAnnotate
         .pipe(gulp.plugins.sourcemaps.init())
         .pipe(gulp.plugins.concat(gulp.config.scripts.minify.dest))
         .pipe(gulp.plugins.uglify(gulp.config.scripts.minify.uglify))
@@ -103,8 +106,8 @@ gulp.task('scripts:jshint', function() {
 });
 
 var series = ['scripts:copy-vendors', 'scripts:copy-plugins', 'scripts:copy-project', 'scripts:copy-components',  'scripts:inject'];
-if (gulp.config.scripts.minify.inBuild) {
+// if (gulp.config.scripts.minify.inBuild) {
     series = ['scripts:min', 'scripts:inject-min'];
-}
+// }
 
 gulp.task('scripts', gulp.series(series));

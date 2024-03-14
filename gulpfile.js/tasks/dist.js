@@ -2,7 +2,6 @@
 
 var fs = require('fs-extra');
 var path = require('path');
-var del = require('del');
 
 gulp.task('dist:clean', function(cb) {
     var dir = path.join(gulp.config.projectDir, gulp.config.roots.dist);
@@ -38,7 +37,8 @@ gulp.task('dist:copy', function(cb) {
     });
 });
 
-gulp.task('dist:delete', function (cb) {
+gulp.task('dist:delete', async function (cb) {
+    const del = (await import('del')).default;
     var distDir = path.join(gulp.config.projectDir, gulp.config.roots.dist);
 
     if (!distDir) {

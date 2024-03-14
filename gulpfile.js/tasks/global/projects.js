@@ -1,7 +1,6 @@
 
 var path = require('path');
 var fs = require('fs-extra');
-var del = require('del');
 
 gulp.task('projects:new', function(cb) {
     var name = gulp.requireArgv('project-name', cb);
@@ -20,7 +19,8 @@ gulp.task('projects:new', function(cb) {
     });
 });
 
-gulp.task('projects:delete', function(cb) {
+gulp.task('projects:delete', async function(cb) {
+    const del = (await import('del')).default;
     var projDir = path.join(gulp.config.projectsDirFull, gulp.requireArgv('project-name', cb));
     del(projDir).then(function() {
         cb();

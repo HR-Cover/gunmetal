@@ -1,5 +1,6 @@
 
 var path = require('path');
+const sass = require('gulp-sass')(require('sass'));
 
 
 // finds all small images in css in build dir, then replaces them into base64 and overwrites css
@@ -22,13 +23,11 @@ gulp.task('styles:scss', function() {
 
     return gulp.src('*.scss', {cwd: srcDir})
         .pipe(gulp.plugins.sassGlobImport())
-        //.pipe(gulp.plugins.debug())
         .pipe(gulp.plugins.sourcemaps.init())
-        .pipe(gulp.plugins.sass({includePaths: includes
-                        , precision: 6
-                        , onError: function(err) {
-                            return console.log(err);
-                            }}))
+        .pipe(sass({ // Use the initialized sass compiler here
+            includePaths: includes,
+            precision: 6
+        }).on('error', sass.logError)) // Note: 'onError' is not a sass option. Use .on('error', sass.logError) instead.
         .pipe(gulp.plugins.postcss(processors))
         .pipe(gulp.plugins.sourcemaps.write('.'))
         .pipe(gulp.dest(dstDir));
