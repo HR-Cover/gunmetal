@@ -28,7 +28,7 @@ yarn cache clean
 yarn install --ignore-engines
 ```
 
-!currently this is still broken we need to update this for images:compress
+!currently this is still broken we need to update this for images:compress on windows and mac
 
 Available Tasks
 ---------------

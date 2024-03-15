@@ -9,7 +9,7 @@ function copyScripts(chunkName, subDir) {
     var dstDir = path.join(gulp.config.projectDir, gulp.config.roots.build);
     var scriptsPath = gulp.config.scripts[chunkName];
 
-    if (scriptsPath) {
+    if (scriptsPath && scriptsPath.length !== 0) {
         return gulp.src(scriptsPath, {root: gulp.config.projectDir})
             .pipe(gulp.dest(path.join(dstDir, subDir)))
             .pipe(gulp.plugins.filenames("scripts"))
@@ -18,7 +18,7 @@ function copyScripts(chunkName, subDir) {
                 gulp.log("Scripts copied successfully for chunk", chunkName);
             });
     } else {
-        console.error("Scripts path for chunk", chunkName, "is not defined.");
+        gulp.log("Scripts path for chunk", chunkName, "is not defined.");
         return Promise.resolve();
     }
 }
@@ -115,8 +115,11 @@ gulp.task('scripts:jshint', function() {
 });
 
 var series = ['scripts:copy-vendors', 'scripts:copy-plugins', 'scripts:copy-project', 'scripts:copy-components',  'scripts:inject'];
+var minseries = ['scripts:min', 'scripts:inject-min'];
 if (gulp.config.scripts.minify.inBuild) {
-    series = ['scripts:min', 'scripts:inject-min'];
+    series = minseries;
 }
 
 gulp.task('scripts', gulp.series(series));
+
+gulp.task('scripts:force-min', gulp.series(minseries));

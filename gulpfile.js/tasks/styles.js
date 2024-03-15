@@ -24,10 +24,35 @@ gulp.task('styles:scss', function() {
     return gulp.src('*.scss', {cwd: srcDir})
         .pipe(gulp.plugins.sassGlobImport())
         .pipe(gulp.plugins.sourcemaps.init())
-        .pipe(sass({ // Use the initialized sass compiler here
+        .pipe(sass({
             includePaths: includes,
             precision: 6
-        }).on('error', sass.logError)) // Note: 'onError' is not a sass option. Use .on('error', sass.logError) instead.
+        }).on('error', sass.logError))
+        .pipe(gulp.plugins.postcss(processors))
+        .pipe(gulp.plugins.sourcemaps.write('.'))
+        .pipe(gulp.dest(dstDir));
+});
+
+gulp.task('styles:scss-force-min', function() {
+    var srcDir = path.join(gulp.config.projectDir, gulp.config.roots.src, gulp.config.srcRoots.scss);
+    var dstDir = path.join(gulp.config.projectDir, gulp.config.roots.build, gulp.config.srcRoots.styles);
+
+    var includes = gulp.config.styles.includes.map(include => path.join(gulp.config.projectDir, include));
+
+    var processors = [
+        // Add autoprefixer processor
+        require('autoprefixer')(gulp.config.styles.processors.autoprefixer),
+        // Add cssnano processor for minification
+        require('cssnano')(gulp.config.styles.processors.cssnano)
+    ];
+
+    return gulp.src('*.scss', {cwd: srcDir})
+        .pipe(gulp.plugins.sassGlobImport())
+        .pipe(gulp.plugins.sourcemaps.init())
+        .pipe(sass({
+            includePaths: includes,
+            precision: 6
+        }).on('error', sass.logError))
         .pipe(gulp.plugins.postcss(processors))
         .pipe(gulp.plugins.sourcemaps.write('.'))
         .pipe(gulp.dest(dstDir));
@@ -83,3 +108,5 @@ gulp.task('styles:scsslint', function() {
 });
 
 gulp.task('styles', gulp.series('styles:scss', 'styles:inject', 'aigis'));
+
+gulp.task('styles:force-min', gulp.series('styles:scss-force-min', 'styles:inject', 'aigis'));
