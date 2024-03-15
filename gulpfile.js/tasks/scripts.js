@@ -15,10 +15,10 @@ function copyScripts(chunkName, subDir) {
             .pipe(gulp.plugins.filenames("scripts"))
             //.pipe(gulp.plugins.debug());
             .on('end', function() {
-                gulp.log("Scripts copied successfully for chunk", chunkName);
+                // gulp.log("Scripts copied successfully for chunk", chunkName);
             });
     } else {
-        gulp.log("Scripts path for chunk", chunkName, "is not defined.");
+        // gulp.log("Scripts path for chunk", chunkName, "is not defined.");
         return Promise.resolve();
     }
 }
