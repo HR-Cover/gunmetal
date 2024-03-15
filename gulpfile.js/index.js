@@ -47,13 +47,9 @@ if (gulp.config.isLoaded) {
     gulp.task('deploy:feature', gulp.series('dist', 'tag:feature', 'git:init-dist', 'git:push'));
     gulp.task('deploy:release', gulp.series('dist', 'tag:release', 'git:init-dist', 'git:push'));
 
-    if (gulp.config.serve.disable) {
-        gulp.task('default', gulp.series('rebuild:full'));
+    if (gulp.config.nodemon.script) {
+        gulp.task('default', gulp.series('rebuild:full', gulp.parallel('nodemon', 'serve')));
     } else {
-        if (gulp.config.nodemon.script) {
-            gulp.task('default', gulp.series('rebuild:full', gulp.parallel('nodemon', 'serve')));
-        } else {
-            gulp.task('default', gulp.series('rebuild:full', 'serve'));
-        }
+        gulp.task('default', gulp.series('rebuild:full', 'serve'));
     }
 }
