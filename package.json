@@ -76,7 +76,7 @@
   "dependencies": {
     "autoprefixer": "6.4.0",
     "bower": "1.7.9",
-    "browser-sync": "2.14.0",
+    "browser-sync": "2.26.9",
     "cssnano": "3.7.4",
     "del": "2.2.2",
     "fs-extra": "0.30.0",
