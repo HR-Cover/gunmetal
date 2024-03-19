@@ -1,7 +1,6 @@
 
 var path = require('path');
 var fs = require('fs-extra');
-var del = require('del');
 
 gulp.task('projects:new', function(cb) {
     var name = gulp.requireArgv('project-name', cb);
@@ -21,10 +20,11 @@ gulp.task('projects:new', function(cb) {
 });
 
 gulp.task('projects:delete', function(cb) {
-    var projDir = path.join(gulp.config.projectsDirFull, gulp.requireArgv('project-name', cb));
-    del(projDir).then(function() {
-        cb();
-    });
+    const projDir = path.join(gulp.config.projectsDirFull, gulp.requireArgv('project-name'));
+
+    fs.remove(projDir)
+      .then(() => cb())
+      .catch(cb);
 });
 
 gulp.task('projects:copy', function(cb) {

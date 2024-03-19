@@ -1,15 +1,26 @@
 
 var path = require('path');
+var ngAnnotate = require('gulp-ng-annotate-patched');
+// var plumber = require('gulp-plumber');
 
 var sources = [].concat(gulp.config.scripts.vendors, gulp.config.scripts.plugins, gulp.config.scripts.components, gulp.config.scripts.project);
 
 function copyScripts(chunkName, subDir) {
     var dstDir = path.join(gulp.config.projectDir, gulp.config.roots.build);
+    var scriptsPath = gulp.config.scripts[chunkName];
 
-    return gulp.src(gulp.config.scripts[chunkName], {root: gulp.config.projectDir})
-        .pipe(gulp.dest(path.join(dstDir, subDir)))
-        .pipe(gulp.plugins.filenames("scripts"))
-        //.pipe(gulp.plugins.debug());
+    if (scriptsPath && scriptsPath.length !== 0) {
+        return gulp.src(scriptsPath, {root: gulp.config.projectDir})
+            .pipe(gulp.dest(path.join(dstDir, subDir)))
+            .pipe(gulp.plugins.filenames("scripts"))
+            //.pipe(gulp.plugins.debug());
+            .on('end', function() {
+                // gulp.log("Scripts copied successfully for chunk", chunkName);
+            });
+    } else {
+        // gulp.log("Scripts path for chunk", chunkName, "is not defined.");
+        return Promise.resolve();
+    }
 }
 
 
@@ -31,12 +42,13 @@ gulp.task('scripts:copy-components', function() {
 
 
 // Copy from source and minify-concat scripts
-gulp.task('scripts:min', function(){
+gulp.task('scripts:min', function() {
     var dstDir = path.join(gulp.config.projectDir, gulp.config.roots.build, gulp.config.srcRoots.scripts);
-    
-     return gulp.src(sources, {root: gulp.config.projectDir})
-         //.pipe(gulp.plugins.debug())
-        .pipe(gulp.plugins.ngAnnotate())
+
+    return gulp.src(sources, {root: gulp.config.projectDir})
+        //.pipe(gulp.plugins.debug())
+        // .pipe(plumber())
+        .pipe(ngAnnotate())
         .pipe(gulp.plugins.sourcemaps.init())
         .pipe(gulp.plugins.concat(gulp.config.scripts.minify.dest))
         .pipe(gulp.plugins.uglify(gulp.config.scripts.minify.uglify))
@@ -103,8 +115,11 @@ gulp.task('scripts:jshint', function() {
 });
 
 var series = ['scripts:copy-vendors', 'scripts:copy-plugins', 'scripts:copy-project', 'scripts:copy-components',  'scripts:inject'];
+var minseries = ['scripts:min', 'scripts:inject-min'];
 if (gulp.config.scripts.minify.inBuild) {
-    series = ['scripts:min', 'scripts:inject-min'];
+    series = minseries;
 }
 
 gulp.task('scripts', gulp.series(series));
+
+gulp.task('scripts:force-min', gulp.series(minseries));

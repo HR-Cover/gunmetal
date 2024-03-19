@@ -1,20 +1,17 @@
 
-
+const { src, dest, task } = require('gulp');
 var path = require('path');
 var metalsmith_task = require('gulp-metalsmith-server').metalsmith_task;
 var shopify_task = require('gulp-metalsmith-server').shopify_task;
 
 // copy layouts to build
-gulp.task('layouts:copy', function() {
-    var srcDir = path.join(gulp.config.projectDir, gulp.config.roots.src, gulp.config.srcRoots.layouts);
-    var dstDir = path.join(gulp.config.projectDir, gulp.config.roots.build, gulp.config.srcRoots.layouts);
-    var source;
-    if (gulp.config.layouts.engine == 'pug')
-        source = srcDir + '/**/*.pug';
-    else
-        source = srcDir + '/**/*.jade';
+task('layouts:copy', () => {
+    const srcDir = path.join(gulp.config.projectDir, gulp.config.roots.src, gulp.config.srcRoots.layouts);
+    const dstDir = path.join(gulp.config.projectDir, gulp.config.roots.build, gulp.config.srcRoots.layouts);
+    const source = gulp.config.layouts.engine === 'pug' ? '**/*.pug' : '**/*.jade';
 
-    return gulp.src(source).pipe(gulp.dest(dstDir));
+    return src(path.join(srcDir, source), { allowEmpty: true })
+        .pipe(dest(dstDir));
 });
 
 var msFunc = function(cb) {

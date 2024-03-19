@@ -14,6 +14,22 @@ What does this particular Gulp setup do?
 - Runs Autoprefixer on CSS
 - Compiles multiple SVG icons into one SVG file
 
+### Setup
+
+Before installing dependencies, ensure your environment is set up correctly, especially if you plan to use `gulp-imagemin` for image optimization tasks. `gulp-imagemin` may require certain binaries to be compiled from source, which in turn requires additional tools that might not be installed on your system by default.
+
+For macOS users, you can prepare your system by installing these tools using Homebrew:
+
+```bash
+brew update
+brew install automake autoconf libtool dpkg pkgconfig nasm libpng
+rm -rf node_modules
+yarn cache clean
+yarn install --ignore-engines
+```
+
+!currently this is still broken we need to update this for images:compress on windows and mac
+
 Available Tasks
 ---------------
 

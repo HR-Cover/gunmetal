@@ -11,13 +11,20 @@ gulp.task('images:copy', function() {
 
 
 // Optimize Images files in build dir
-gulp.task('images:compress', function() {
+gulp.task('images:compress', async function() {
+    const imagemin = (await import('gulp-imagemin')).default;
     var buildDir = path.join(gulp.config.projectDir, gulp.config.roots.build, gulp.config.srcRoots.imgs);
     var source = buildDir + '/**/*(*.png|*.jpg|*.jpeg|*.gif|*.svg)';
 
-    return gulp.src(source)
-        .pipe(gulp.plugins.imagemin(gulp.config.images.min))
-        .pipe(gulp.dest(buildDir));
+    if (gulp.config.images.compressBypass) {
+        gulp.log("Image compression bypassed.");
+        return gulp.src(source)
+            .pipe(gulp.dest(buildDir));
+    } else {
+        return gulp.src(source)
+            .pipe(imagemin(gulp.config.images.min))
+            .pipe(gulp.dest(buildDir));
+    }
 });
 
 // finds all small images in css in build dir, then replaces them into base64 and overwrites css
