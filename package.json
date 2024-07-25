@@ -94,7 +94,7 @@
     "gulp-filenames": "4.0.1",
     "gulp-filter": "9.0.1",
     "gulp-filter-by": "1.2.0",
-    "gulp-git": "2.10.1",
+    "gulp-git": "2.10.2",
     "gulp-htmlsplit": "1.1.1",
     "gulp-imagemin": "9.0.0",
     "gulp-inject": "5.0.5",
