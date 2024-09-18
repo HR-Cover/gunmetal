@@ -127,7 +127,7 @@
     "minimist": "1.2.8",
     "postcss": "^8.4.35",
     "require-dir": "1.2.0",
-    "sass": "^1.72.0",
+    "sass": "^1.79.0",
     "semver": "7.6.0",
     "then-jade": "2.4.4",
     "vinyl-fs": "^4.0.0",
