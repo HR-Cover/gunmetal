@@ -125,7 +125,7 @@
     "lodash": "4.17.21",
     "metalsmith": "2.6.3",
     "minimist": "1.2.8",
-    "postcss": "^8.4.35",
+    "postcss": "^8.5.0",
     "require-dir": "1.2.0",
     "sass": "^1.72.0",
     "semver": "7.6.0",
