@@ -1,0 +1,19 @@
+# Snyk (https://snyk.io) policy file, patches or ignores known vulnerabilities.
+version: v1.25.1
+ignore: {}
+# patches apply the minimum changes required to fix a vulnerability
+patch:
+  'npm:minimatch:20160620':
+    - gulp-metalsmith-server > metalsmith-ignore > multimatch > minimatch:
+        patched: '2024-03-19T17:15:37.941Z'
+        id: 'npm:minimatch:20160620'
+        path: gulp-metalsmith-server > metalsmith-ignore > multimatch > minimatch
+    - gulp-metalsmith-server > metalsmith-templates > multimatch > minimatch:
+        patched: '2024-03-19T17:15:37.941Z'
+        id: 'npm:minimatch:20160620'
+        path: gulp-metalsmith-server > metalsmith-templates > multimatch > minimatch
+  'npm:uglify-js:20151024':
+    - gulp-metalsmith-server > then-jade > jade > transformers > uglify-js:
+        patched: '2024-03-19T17:15:37.941Z'
+        id: 'npm:uglify-js:20151024'
+        path: gulp-metalsmith-server > then-jade > jade > transformers > uglify-js
