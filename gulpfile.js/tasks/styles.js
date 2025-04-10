@@ -60,7 +60,16 @@ gulp.task('styles:scss-force-min', function() {
         .pipe(gulp.plugins.sourcemaps.init())
         .pipe(sass({
             includePaths: includes,
-            precision: 6
+            precision: 6,
+            quietDeps: true,
+            logger: {         
+                warn: function(message) {
+                    console.log('[hidden log from gulp-sass (warning)]');
+                },
+                debug: function(message) {
+                    console.log('[hidden log from gulp-sass (debug)]');
+                }
+            }
         }).on('error', sass.logError))
         .pipe(gulp.plugins.postcss(processors))
         .pipe(gulp.plugins.sourcemaps.write('.'))
